@@ -1,7 +1,7 @@
 
 // import { describe, expect, it } from '@jest/globals';
 import request from 'supertest';
-import app from '../src/app.js';
+import app from '../src/server.mjs';
 
 describe('GET /', () => {
   it('responds with Hello World', async () => {
