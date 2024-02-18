@@ -2,11 +2,11 @@
   "name": "practica-valuable-pipeline",
   "version": "1.0.0",
   "description": "",
+  "type": "module",
   "main": "app.js",
   "scripts": {
     "test": "NODE_OPTIONS=--experimental-vm-modules npx jest",
-    "build": "babel src/server.mjs -d dist",
-    "start": "npm run build && node src/server.mjs",
+    "start": "node src/server.mjs",
     "lint": "eslint '**/*.js' --ignore-pattern node_modules/ "
   },
   "keywords": [],
