@@ -1,8 +1,8 @@
 # Establecer la imagen base
-FROM node:14
+FROM node:16
 
 # Crear directorio de trabajo
-WORKDIR /spp
+WORKDIR /app
 
 # Instalar dependencias
 # El asterisco (*) es usado para asegurar que tanto package.json como package-lock.json sean copiados
