@@ -1,12 +1,12 @@
 
-// import { describe, expect, it } from '@jest/globals';
+import {describe, it, expect} from '@jest/globals';
 import request from 'supertest';
-import app from '../src/server.mjs';
+import app from '../src/app.js';
 
 describe('GET /', () => {
-  it('responds with Hello World', async () => {
+  it('responds with Hello World and GET method', async () => {
     const response = await request(app).get('/');
     expect(response.statusCode).toBe(200);
-    expect(response.text).toBe('Hello World');
+    expect(response.text).toBe('Hello World!');
   });
 });
