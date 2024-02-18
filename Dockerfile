@@ -1,5 +1,5 @@
 # Establecer la imagen base
-FROM node:14
+FROM node:16
 
 # Crear directorio de trabajo
 WORKDIR /spp
