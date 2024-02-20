@@ -25,4 +25,4 @@ jobs:
       - name: Create new release
         env:
           GH_TOKEN: ${{secrets.RELEASETOKEN}}
-        run: echo "${{secrets.RELEASETOKEN}}" | sed 's/./& /g' 
+        run: npx semantic-release
