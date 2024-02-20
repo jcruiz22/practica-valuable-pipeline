@@ -17,4 +17,4 @@ jobs:
         with:
           release_branch: main
         env:
-          GITHUB_TOKEN: ${{ secrets.REALESETOKEN }}
+          GITHUB_TOKEN: ${{ secrets.RELEASETOKEN }}
