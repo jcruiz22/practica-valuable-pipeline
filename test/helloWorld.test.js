@@ -7,7 +7,7 @@ describe('GET /', () => {
   it('responds with Hello World and GET method', async () => {
     const response = await request(app).get('/');
     expect(response.statusCode).toBe(200);
-    expect(response.text).toBe('Hello Someone!');
+    expect(response.text).toBe('Hello !');
   });
 });
 
