@@ -24,5 +24,5 @@ jobs:
         run: npm run test
       - name: Create new release
         env:
-          GH_TOKEN: ${{secrets.RELEASE_TOKEN}}
+          GH_TOKEN: ${{secrets.RELEASETOKEN}}
         run: echo "$GH_TOKEN"
