@@ -54,7 +54,6 @@ env:
 
 on:
   # https://docs.github.com/en/actions/reference/events-that-trigger-workflows
-  workflow_dispatch:
   push:
     # Edit to the branch(es) you want to build and deploy on each push.
     branches: [ $default-branch ]
@@ -66,7 +65,7 @@ jobs:
   #
   # TODO: Make sure to add 'CRDA Scan' starter workflow from the 'Actions' tab.
   # For guide on adding new starter workflow visit https://docs.github.com/en/github-ae@latest/actions/using-workflows/using-starter-workflows
-  
+
   openshift-ci-cd:
     # 🖊️ Uncomment this if you are using CRDA scan step above
     # needs: crda-scan
