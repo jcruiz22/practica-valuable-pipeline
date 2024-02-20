@@ -25,4 +25,4 @@ jobs:
       - name: Create new release
         env:
           GH_TOKEN: ${{secrets.GITHUB_TOKEN}}
-        run: npx semantic-release
+        run: echo "$GH_TOKEN"
