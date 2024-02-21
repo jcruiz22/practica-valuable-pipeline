@@ -67,7 +67,6 @@ jobs:
   # the application. Please uncomment the below CRDA scan job and configure to run it in
   # your workflow. For details about CRDA action visit https://github.com/redhat-actions/crda/blob/main/README.md
   #
-  
   # TODO: Make sure to add 'CRDA Scan' starter workflow from the 'Actions' tab.
   # For guide on adding new starter workflow visit https://docs.github.com/en/github-ae@latest/actions/using-workflows/using-starter-workflows
   openshift-ci-cd:
@@ -133,9 +132,9 @@ jobs:
       run: |
         echo "IMAGE_TAGS=latest ${GITHUB_SHA::12}" | tee -a $GITHUB_ENV
 
-
     # https://github.com/redhat-actions/push-to-registry#readme
     - name: Push to registry
+      id: push-image
       uses: redhat-actions/push-to-registry@v2
       with:
         image: ${{ steps.build-image.outputs.image }}
@@ -143,6 +142,23 @@ jobs:
         registry: ${{ env.IMAGE_REGISTRY }}
         username: ${{ env.IMAGE_REGISTRY_USER }}
         password: ${{ env.IMAGE_REGISTRY_PASSWORD }}
+
+    - name: Login to Docker Hub
+      uses: docker/login-action@v3
+      with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+    - name: Set up Docker Buildx
+      uses: docker/setup-buildx-action@v3
+    - name: Build and push
+      uses: docker/build-push-action@v5
+      with:
+          context: .
+          file: ./Dockerfile
+          push: true
+          tags: |
+            ${{ secrets.DOCKERHUB_USERNAME }}/practica:latest
+            ${{ secrets.DOCKERHUB_USERNAME }}/practica:${{env.IMAGE_TAGS}}
 
     # The path the image was pushed to is now stored in ${{ steps.push-image.outputs.registry-path }}
 
