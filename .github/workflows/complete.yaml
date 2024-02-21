@@ -115,8 +115,7 @@ jobs:
       id: last_release
       uses: InsonusK/get-latest-release@v1.0.1
       with:
-        myToken: ${{ github.token }}
-        exclude_types: "release"
+        myToken: ${{ secrets.GITHUB_TOKEN }}
         view_top: 1
     - name: "Print result"
       run: |
