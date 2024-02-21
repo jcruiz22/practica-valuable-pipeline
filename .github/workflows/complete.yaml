@@ -50,7 +50,7 @@ env:
   IMAGE_REGISTRY_PASSWORD: ${{ secrets.IMAGE_REGISTRY_PASSWORD }}
 
   # 🖊️ EDIT to specify custom tags for the container image, or default tags will be generated below.
-  IMAGE_TAGS: ${{ github.event.release.tag_name }}
+  IMAGE_TAGS: ${{ github.event.release. }}
 
 on:
   # https://docs.github.com/en/actions/reference/events-that-trigger-workflows
@@ -85,6 +85,7 @@ jobs:
       uses: actions/github-script@v6
       with:
         script: |
+          echo "tag=${GITHUB_REF#refs/*/}"
           const secrets = {
             OPENSHIFT_SERVER: `${{ secrets.OPENSHIFT_SERVER }}`,
             OPENSHIFT_TOKEN: `${{ secrets.OPENSHIFT_TOKEN }}`,
