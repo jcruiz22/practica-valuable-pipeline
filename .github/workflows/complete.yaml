@@ -110,27 +110,16 @@ jobs:
           else {
             core.info(`✅ All the required secrets are set`);
           }
-    - uses: actions/checkout@v1
+   
+    - name: Check out repository
+      uses: actions/checkout@v3
+
     - name: "call action"
       id: last_release
       uses: InsonusK/get-latest-release@v1.0.1
       with:
         myToken: ${{ secrets.GITHUB_TOKEN }}
         view_top: 1
-    - name: "Print result"
-      run: |
-        echo "id: ${{ steps.last_release.outputs.id }}"
-        echo "name: ${{ steps.last_release.outputs.name }}"
-        echo "tag_name: ${{ steps.last_release.outputs.tag_name }}"
-        echo "created_at: ${{ steps.last_release.outputs.created_at }}"
-        echo "draft: ${{ steps.last_release.outputs.draft }}"
-        echo "prerelease: ${{ steps.last_release.outputs.prerelease }}"
-        echo "url: ${{ steps.last_release.outputs.url }}"
-        echo "html_url: ${{ steps.last_release.outputs.html_url }}"
-
-    - name: Check out repository
-      uses: actions/checkout@v3
-
     - name: Determine app name
       if: env.APP_NAME == ''
       run: |
@@ -141,7 +130,7 @@ jobs:
       run: |
         echo "tag=${{ github.event.release.tag_name }}"
         echo "tag=${{ github.event.release.name }}"
-        echo "IMAGE_TAGS=${GITHUB_SHA::12}" | tee -a $GITHUB_ENV
+        echo "IMAGE_TAGS=${{ steps.last_release.outputs.tag_name }}"" | tee -a $GITHUB_ENV
     - name: Login to Docker Hub
       uses: docker/login-action@v3
       with:
