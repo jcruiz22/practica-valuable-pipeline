@@ -69,7 +69,7 @@ jobs:
     - name: Check out repository
       uses: actions/checkout@v3
 
-    - name: "call action"
+    - name: Get version
       id: last_release
       uses: InsonusK/get-latest-release@v1.0.1
       with:
