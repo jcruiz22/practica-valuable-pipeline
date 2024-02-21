@@ -57,18 +57,10 @@ on:
   push:
     # Edit to the branch(es) you want to build and deploy on each push.
     branches: [ main ]
-  workflow_run:
-    workflows: ["Node.js testing"]
-    types:
-      - completed
 
 jobs:
-  # 🖊️ EDIT if you want to run vulnerability check on your project before deploying
-  # the application. Please uncomment the below CRDA scan job and configure to run it in
-  # your workflow. For details about CRDA action visit https://github.com/redhat-actions/crda/blob/main/README.md
-  #
-  # TODO: Make sure to add 'CRDA Scan' starter workflow from the 'Actions' tab.
-  # For guide on adding new starter workflow visit https://docs.github.com/en/github-ae@latest/actions/using-workflows/using-starter-workflows
+  tests:
+    uses: ./.github/workflows/test.yml
   openshift-ci-cd:
     # 🖊️ Uncomment this if you are using CRDA scan step above
     # needs: crda-scan
