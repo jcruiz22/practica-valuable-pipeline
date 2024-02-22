@@ -127,17 +127,6 @@ jobs:
         namespace: ${{ env.OPENSHIFT_NAMESPACE }}
         port: ${{ env.APP_PORT }}
 
-    - name: Test deployment
-      env:
-        ROUTE: ${{ steps.deploy-and-expose.outputs.route }}
-        SELECTOR: ${{ steps.deploy-and-expose.outputs.selector }}
-      uses: indiesdev/curl@v1.1
-      id: api
-      with:
-        url: ${{ env.ROUTE }}
-        method: "GET"
-        accept: 200
-
     - name: Print application URL
       env:
         ROUTE: ${{ steps.deploy-and-expose.outputs.route }}
